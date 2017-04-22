@@ -1,0 +1,416 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/brycebaril/node-floordate#readme"
+
+    >floordate (v3.0.0)</a>
+</h1>
+<h4>Simple date flooring, floor a date to the start of a specified time window.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.floordate">module floordate</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.floordate">
+            function <span class="apidocSignatureSpan"></span>floordate
+            <span class="apidocSignatureSpan">(date, threshold, tzOffset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toDay">
+            function <span class="apidocSignatureSpan">floordate.</span>toDay
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toHour">
+            function <span class="apidocSignatureSpan">floordate.</span>toHour
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toMinute">
+            function <span class="apidocSignatureSpan">floordate.</span>toMinute
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toMonth">
+            function <span class="apidocSignatureSpan">floordate.</span>toMonth
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toQuarter">
+            function <span class="apidocSignatureSpan">floordate.</span>toQuarter
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toSecond">
+            function <span class="apidocSignatureSpan">floordate.</span>toSecond
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toWeek">
+            function <span class="apidocSignatureSpan">floordate.</span>toWeek
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.floordate.toYear">
+            function <span class="apidocSignatureSpan">floordate.</span>toYear
+            <span class="apidocSignatureSpan">(date, offset)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.floordate" id="apidoc.module.floordate">module floordate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.floordate" id="apidoc.element.floordate.floordate">
+        function <span class="apidocSignatureSpan"></span>floordate
+        <span class="apidocSignatureSpan">(date, threshold, tzOffset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function floorDate(date, threshold, tzOffset) {
+  var floored = _floorDate(date, threshold)
+
+  if (tzOffset != null) {
+    if (!(isNumber(tzOffset))) {
+      if (tzOffset == &#x22;UTC&#x22; || tzOffset == &#x22;utc&#x22;) {
+        tzOffset = 0
+      }
+      else {
+        throw new Error(&#x22;Unrecognized timezone offset &#x22; + tzOffset + &#x22; (expected minutes or &#x27;UTC&#x27;)&#x22;)
+      }
+    }
+    var offsetMillis = (floored.getTimezoneOffset() - tzOffset) * MILLIS_PER_MINUTE
+    floored = new Date(floored.getTime() + offsetMillis)
+  }
+
+  return floored
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toDay" id="apidoc.element.floordate.toDay">
+        function <span class="apidocSignatureSpan">floordate.</span>toDay
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toDay = function (date, offset) { return floorDate(date, &#x22;d&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Aliases
+-------
+
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toDay</span>(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
+
+LICENSE
+=======
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toHour" id="apidoc.element.floordate.toHour">
+        function <span class="apidocSignatureSpan">floordate.</span>toHour
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toHour = function (date, offset) { return floorDate(date, &#x22;h&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+This means it is the responsibility of the user to correctly specify the desired timezone offset including DST for the **resulting
+** date, which may be different.
+
+Aliases
+-------
+
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toHour</span>(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
+
+LICENSE
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toMinute" id="apidoc.element.floordate.toMinute">
+        function <span class="apidocSignatureSpan">floordate.</span>toMinute
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toMinute = function (date, offset) { return floorDate(date, &#x22;m&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+This means it is the responsibility of the user to correctly specify the desired timezone offset including DST for the **resulting
+** date, which may be different.
+
+Aliases
+-------
+
+* `floorDate.toSecond(date[, timezoneOffset])`
+* `floorDate.<span class="apidocCodeKeywordSpan">toMinute</span>(date[, timezoneOffset])`
+* `floorDate.toHour(date[, timezoneOffset])`
+* `floorDate.toDay(date[, timezoneOffset])`
+* `floorDate.toWeek(date[, timezoneOffset])`
+* `floorDate.toMonth(date[, timezoneOffset])`
+* `floorDate.toQuarter(date[, timezoneOffset])`
+* `floorDate.toYear(date[, timezoneOffset])`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toMonth" id="apidoc.element.floordate.toMonth">
+        function <span class="apidocSignatureSpan">floordate.</span>toMonth
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toMonth = function (date, offset) { return floorDate(date, &#x22;M&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+-------
+
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toMonth</span>(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
+
+LICENSE
+=======
+MIT
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toQuarter" id="apidoc.element.floordate.toQuarter">
+        function <span class="apidocSignatureSpan">floordate.</span>toQuarter
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toQuarter = function (date, offset) { return floorDate(date, &#x22;q&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toQuarter</span>(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
+
+LICENSE
+=======
+MIT
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toSecond" id="apidoc.element.floordate.toSecond">
+        function <span class="apidocSignatureSpan">floordate.</span>toSecond
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toSecond = function (date, offset) { return floorDate(date, &#x22;s&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+floorDate(d, 5000) // floor to the nearest 5000 ms interval prior to now
+// Thu Aug 15 2013 19:38:45 GMT-0700 (PDT)
+
+floorDate(d, &#x22;second&#x22;)
+// Thu Aug 15 2013 19:38:45 GMT-0700 (PDT)
+// or
+floorDate.<span class="apidocCodeKeywordSpan">toSecond</span>(d)
+// Thu Aug 15 2013 19:38:45 GMT-0700 (PDT)
+
+floorDate(d, &#x22;minute&#x22;)
+// Thu Aug 15 2013 19:38:00 GMT-0700 (PDT)
+
+floorDate(d, &#x22;hour&#x22;)
+// Thu Aug 15 2013 19:00:00 GMT-0700 (PDT)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toWeek" id="apidoc.element.floordate.toWeek">
+        function <span class="apidocSignatureSpan">floordate.</span>toWeek
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toWeek = function (date, offset) { return floorDate(date, &#x22;w&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Aliases
+-------
+
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toWeek</span>(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
+
+LICENSE
+=======
+MIT
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.floordate.toYear" id="apidoc.element.floordate.toYear">
+        function <span class="apidocSignatureSpan">floordate.</span>toYear
+        <span class="apidocSignatureSpan">(date, offset)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toYear = function (date, offset) { return floorDate(date, &#x22;y&#x22;, offset) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.<span class="apidocCodeKeywordSpan">toYear</span>(date[, timezoneOffset])`
+
+LICENSE
+=======
+MIT
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
